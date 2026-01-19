@@ -48,15 +48,18 @@ async function handleAddListing(form) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Uploading...';
 
-        // Step 1: Upload images to Google Drive
+        // Step 1: Generate unique listing ID first
+        const listingId = 'PROP-' + Date.now();
+
+        // Step 2: Upload images to Google Drive (with listing ID in filename)
         const imageFiles = document.getElementById('images').files;
-        const imageURLs = await uploadImages(imageFiles);
+        const imageURLs = await uploadImages(imageFiles, listingId);
 
         submitBtn.textContent = 'Saving listing...';
 
-        // Step 2: Prepare listing data
+        // Step 3: Prepare listing data
         const listingData = {
-            id: 'PROP-' + Date.now(),
+            id: listingId,
             title: document.getElementById('title').value,
             description: document.getElementById('description').value,
             price: Number(document.getElementById('price').value),
@@ -99,14 +102,18 @@ async function handleAddListing(form) {
  * Upload images to Google Drive via n8n
  * Returns array of public URLs
  */
-async function uploadImages(files) {
+async function uploadImages(files, listingId) {
     if (!files || files.length === 0) {
         return [];
     }
 
-    const uploadPromises = Array.from(files).map(async (file) => {
+    const uploadPromises = Array.from(files).map(async (file, index) => {
         // Convert file to base64
         const base64 = await fileToBase64(file);
+
+        // Create unique filename with listing ID
+        const fileExt = file.name.split('.').pop();
+        const uniqueFileName = `${listingId}_${index + 1}.${fileExt}`;
 
         // Send to n8n webhook
         const response = await fetch(N8N_CONFIG.webhooks.uploadImage, {
@@ -115,7 +122,7 @@ async function uploadImages(files) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                fileName: file.name,
+                fileName: uniqueFileName,
                 fileData: base64,
                 mimeType: file.type,
             }),
@@ -125,11 +132,23 @@ async function uploadImages(files) {
             throw new Error(`Failed to upload ${file.name}`);
         }
 
-        const result = await response.json();
-        return result.url || result.webViewLink || result.webContentLink;
+        let result = await response.json();
+        console.log('Upload response for', uniqueFileName, ':', result);
+
+        // Handle n8n returning array instead of object
+        if (Array.isArray(result) && result.length > 0) {
+            result = result[0];
+        }
+
+        const imageUrl = result.url || result.webViewLink || result.webContentLink;
+        console.log('Extracted URL:', imageUrl);
+
+        return imageUrl;
     });
 
-    return await Promise.all(uploadPromises);
+    const urls = await Promise.all(uploadPromises);
+    console.log('All uploaded image URLs:', urls);
+    return urls;
 }
 
 /**

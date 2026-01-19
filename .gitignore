@@ -1,0 +1,35 @@
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Node modules (if any)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment files
+.env
+.env.local
+
+# Build output
+dist/
+build/
+
+# Backup files
+*.bak
+*.backup
