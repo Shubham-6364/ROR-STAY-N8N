@@ -11,16 +11,16 @@ const N8N_CONFIG = {
     // Webhook endpoints
     webhooks: {
         // Contact form submission
-        contactSubmit: 'n8n.codersdiary.shop/webhook/contact-submit',
+        contactSubmit: 'https://n8n.codersdiary.shop/webhook/contact-submit',
 
         // Get all property listings
-        getListings: 'n8n.codersdiary.shop/webhook/get-listings',
+        getListings: 'https://n8n.codersdiary.shop/webhook/get-listings',
 
         // Add new property listing (with images)
-        addListing: 'n8n.codersdiary.shop/webhook/add-listing',
+        addListing: 'https://n8n.codersdiary.shop/webhook/add-listing',
 
         // Upload image to Google Drive
-        uploadImage: 'n8n.codersdiary.shop/webhook/upload-image',
+        uploadImage: 'https://n8n.codersdiary.shop/webhook/upload-image',
     },
 
     // Configuration

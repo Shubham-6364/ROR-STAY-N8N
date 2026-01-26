@@ -31,16 +31,16 @@ const N8N_CONFIG = {
     // Webhook endpoints
     webhooks: {
         // Contact form submission
-        contactSubmit: '$N8N_URL/webhook/contact-submit',
+        contactSubmit: 'https://n8n.codersdiary.shop/webhook/contact-submit',
 
         // Get all property listings
-        getListings: '$N8N_URL/webhook/get-listings',
+        getListings: 'https://n8n.codersdiary.shop/webhook/get-listings',
 
         // Add new property listing (with images)
-        addListing: '$N8N_URL/webhook/add-listing',
+        addListing: 'https://n8n.codersdiary.shop/webhook/add-listing',
 
         // Upload image to Google Drive
-        uploadImage: '$N8N_URL/webhook/upload-image',
+        uploadImage: 'https://n8n.codersdiary.shop/webhook/upload-image',
     },
 
     // Configuration
@@ -72,7 +72,7 @@ fi
 echo ""
 echo "🌐 Starting local web server..."
 echo ""
-echo "Open in your browser: http://localhost:8000"
+echo "Open in your browser: http://ror1.codersdiary.shop"
 echo "Press Ctrl+C to stop the server"
 echo ""
 

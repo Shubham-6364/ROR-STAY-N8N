@@ -65,8 +65,13 @@ async function handleAddListing(form) {
             price: Number(document.getElementById('price').value),
             location: document.getElementById('location').value,
             propertyType: document.getElementById('propertyType').value,
+            bhk: document.getElementById('bhk').value,
+            area: Number(document.getElementById('area').value),
+            furnished: document.getElementById('furnished').value,
+            availability: document.getElementById('availability').value,
             features: document.getElementById('features').value,
             imageURLs: imageURLs,
+            verified: true, // Mark admin-added properties as verified
             status: 'available',
             timestamp: new Date().toISOString(),
         };

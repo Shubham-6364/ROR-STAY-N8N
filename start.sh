@@ -26,10 +26,10 @@ if grep -q "localhost:5678" public/js/config.js; then
 const N8N_CONFIG = {
     baseURL: '$N8N_URL',
     webhooks: {
-        contactSubmit: '$N8N_URL/webhook/contact-submit',
-        getListings: '$N8N_URL/webhook/get-listings',
-        addListing: '$N8N_URL/webhook/add-listing',
-        uploadImage: '$N8N_URL/webhook/upload-image',
+        contactSubmit: 'https://n8n.codersdiary.shop/webhook/contact-submit',
+        getListings: 'https://n8n.codersdiary.shop/webhook/get-listings',
+        addListing: 'https://n8n.codersdiary.shop/webhook/add-listing',
+        uploadImage: 'https://n8n.codersdiary.shop/webhook/upload-image',
     },
     timeout: 30000,
 };

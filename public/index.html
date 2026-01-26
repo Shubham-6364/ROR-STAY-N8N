@@ -17,18 +17,58 @@
       <div class="nav-brand">
         <h1 class="logo">🏠 ROR STAY</h1>
       </div>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="#listings">Properties</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </header>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919828784649?text=Hi%20ROR%20STAY!%20I'm%20interested%20in%20property%20rentals"
+    class="whatsapp-float" target="_blank" aria-label="Contact via WhatsApp"
+    style="position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; text-decoration: none; transition: transform 0.3s;">
+    💬
+  </a>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Find Your Perfect Stay</h1>
-        <p class="hero-subtitle">Quality rental properties near colleges, offices, and tech parks</p>
+        <h1 class="hero-title">Find Your Perfect Stay in Jaipur</h1>
+        <p class="hero-subtitle">Verified properties near colleges, offices, and tech parks. No hidden fees, transparent
+          pricing.</p>
         <div class="hero-cta">
           <a href="#listings" class="btn btn-primary btn-lg">Browse Properties</a>
-          <a href="#contact" class="btn btn-outline btn-lg">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats-section"
+    style="padding: 3rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+    <div class="container">
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+        <div>
+          <div class="stat-number" style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">500+</div>
+          <div style="font-size: 1.125rem; opacity: 0.9;">Happy Tenants</div>
+        </div>
+        <div>
+          <div class="stat-number" style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">200+</div>
+          <div style="font-size: 1.125rem; opacity: 0.9;">Verified Properties</div>
+        </div>
+        <div>
+          <div class="stat-number" style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">150+</div>
+          <div style="font-size: 1.125rem; opacity: 0.9;">Property Owners</div>
+        </div>
+        <div>
+          <div class="stat-number" style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">98%</div>
+          <div style="font-size: 1.125rem; opacity: 0.9;">Satisfaction Rate</div>
         </div>
       </div>
     </div>
@@ -42,22 +82,17 @@
         <div class="feature-card">
           <div class="feature-icon">✓</div>
           <h3>Verified Properties</h3>
-          <p>All properties are personally verified by our team</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📍</div>
-          <h3>Prime Locations</h3>
-          <p>Near major colleges, offices, and tech hubs</p>
+          <p>Every property personally verified by our team</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">💰</div>
-          <h3>No Hidden Fees</h3>
-          <p>Transparent pricing with no surprises</p>
+          <h3>Transparent Pricing</h3>
+          <p>No hidden fees, clear pricing from the start</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🤝</div>
-          <h3>Personal Support</h3>
-          <p>Dedicated assistance throughout your journey</p>
+          <h3>Dedicated Support</h3>
+          <p>Personal assistance throughout your journey</p>
         </div>
       </div>
     </div>
@@ -70,31 +105,76 @@
 
       <!-- Filters -->
       <div class="filters-card">
+        <h3 style="margin-bottom: 1.5rem; font-size: 1.125rem; font-weight: 600;">Find Your Property</h3>
         <div class="filters-grid">
-          <select id="filterLocation" class="select">
-            <option value="">All Locations</option>
-            <option value="Durgapura">Durgapura</option>
-            <option value="Gopalpura">Gopalpura</option>
-            <option value="Jagatpura">Jagatpura</option>
-            <option value="Malviya Nagar">Malviya Nagar</option>
-            <option value="Pratap Nagar">Pratap Nagar</option>
-            <option value="Sanganer">Sanganer</option>
-          </select>
-          <select id="filterPriceRange" class="select">
-            <option value="">All Prices</option>
-            <option value="0-10000">Under ₹10,000</option>
-            <option value="10000-20000">₹10,000 - ₹20,000</option>
-            <option value="20000-30000">₹20,000 - ₹30,000</option>
-            <option value="30000-50000">₹30,000 - ₹50,000</option>
-            <option value="50000-">Above ₹50,000</option>
-          </select>
-          <select id="filterPropertyType" class="select">
-            <option value="">All Types</option>
-            <option value="Apartment">Apartment</option>
-            <option value="House">House</option>
-            <option value="Condo">Condo</option>
-          </select>
-          <button id="clearFilters" class="btn btn-outline">Clear Filters</button>
+          <div>
+            <label
+              style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--gray-700);">Location</label>
+            <select id="filterLocation" class="select">
+              <option value="">All Locations</option>
+              <option value="Durgapura">Durgapura</option>
+              <option value="Gopalpura">Gopalpura</option>
+              <option value="Jagatpura">Jagatpura</option>
+              <option value="Malviya Nagar">Malviya Nagar</option>
+              <option value="Pratap Nagar">Pratap Nagar</option>
+              <option value="Sanganer">Sanganer</option>
+              <option value="Vaishali Nagar">Vaishali Nagar</option>
+              <option value="Mansarovar">Mansarovar</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--gray-700);">Property
+              Type</label>
+            <select id="filterPropertyType" class="select">
+              <option value="">All Types</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Flat">Flat</option>
+              <option value="House">House</option>
+              <option value="Villa">Villa</option>
+              <option value="Studio">Studio</option>
+              <option value="PG">PG/Hostel</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--gray-700);">BHK</label>
+            <select id="filterBHK" class="select">
+              <option value="">Any</option>
+              <option value="1">1 BHK</option>
+              <option value="2">2 BHK</option>
+              <option value="3">3 BHK</option>
+              <option value="4">4+ BHK</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--gray-700);">Price
+              Range</label>
+            <select id="filterPriceRange" class="select">
+              <option value="">All Prices</option>
+              <option value="0-10000">Under ₹10,000</option>
+              <option value="10000-20000">₹10,000 - ₹20,000</option>
+              <option value="20000-30000">₹20,000 - ₹30,000</option>
+              <option value="30000-50000">₹30,000 - ₹50,000</option>
+              <option value="50000-">Above ₹50,000</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--gray-700);">Furnished
+              Status</label>
+            <select id="filterFurnished" class="select">
+              <option value="">Any</option>
+              <option value="Fully Furnished">Fully Furnished</option>
+              <option value="Semi Furnished">Semi Furnished</option>
+              <option value="Unfurnished">Unfurnished</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -202,14 +282,116 @@
     </div>
   </section>
 
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" style="padding: 4rem 0; background: var(--gray-50);">
+    <div class="container">
+      <h2 class="section-title">What Our Tenants Say</h2>
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div class="feature-card" style="text-align: left;">
+          <div style="color: #FFC107; font-size: 1.5rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
+          <p style="font-style: italic; margin-bottom: 1rem; color: var(--gray-700);">"ROR STAY made my property search
+            so easy! Found a great apartment near my office in just 3 days. Highly recommended!"</p>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div
+              style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+              SK</div>
+            <div>
+              <div style="font-weight: 600; color: var(--gray-900);">Shubham Kumar</div>
+              <div style="font-size: 0.875rem; color: var(--gray-600);">IT Professional, Jagatpura</div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card" style="text-align: left;">
+          <div style="color: #FFC107; font-size: 1.5rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
+          <p style="font-style: italic; margin-bottom: 1rem; color: var(--gray-700);">"Excellent service! The team was
+            very responsive and helped me find a perfect place near my college. Transparent pricing too!"</p>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div
+              style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+              PS</div>
+            <div>
+              <div style="font-weight: 600; color: var(--gray-900);">Priya Sharma</div>
+              <div style="font-size: 0.875rem; color: var(--gray-600);">Student, Malviya Nagar</div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card" style="text-align: left;">
+          <div style="color: #FFC107; font-size: 1.5rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
+          <p style="font-style: italic; margin-bottom: 1rem; color: var(--gray-700);">"Very professional service. They
+            verified everything before showing me the property. No hassles, smooth process!"</p>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div
+              style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+              RG</div>
+            <div>
+              <div style="font-weight: 600; color: var(--gray-900);">Rahul Gupta</div>
+              <div style="font-size: 0.875rem; color: var(--gray-600);">Engineer, Durgapura</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 ROR STAY. All rights reserved.</p>
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: left; padding: 2rem 0;">
+        <div>
+          <h3 style="color: white; margin-bottom: 1rem; font-size: 1.25rem;">🏠 ROR STAY</h3>
+          <p style="opacity: 0.8; font-size: 0.875rem; line-height: 1.6;">Your trusted partner for quality rental
+            properties in Jaipur. Making property rental simple and transparent.</p>
+        </div>
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">Quick Links</h4>
+          <ul style="list-style: none; padding: 0; opacity: 0.8;">
+            <li style="margin-bottom: 0.5rem;"><a href="about.html" style="color: white; text-decoration: none;">About
+                Us</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="how-it-works.html"
+                style="color: white; text-decoration: none;">How It Works</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="#listings"
+                style="color: white; text-decoration: none;">Properties</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="#contact"
+                style="color: white; text-decoration: none;">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">Legal</h4>
+          <ul style="list-style: none; padding: 0; opacity: 0.8;">
+            <li style="margin-bottom: 0.5rem;"><a href="privacy-policy.html"
+                style="color: white; text-decoration: none;">Privacy Policy</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="terms-conditions.html"
+                style="color: white; text-decoration: none;">Terms & Conditions</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="refund-policy.html"
+                style="color: white; text-decoration: none;">Refund Policy</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="cookie-policy.html"
+                style="color: white; text-decoration: none;">Cookie Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">Contact Info</h4>
+          <ul style="list-style: none; padding: 0; opacity: 0.8; font-size: 0.875rem;">
+            <li style="margin-bottom: 0.5rem;">📧 contact@rorstay.com</li>
+            <li style="margin-bottom: 0.5rem;">📞 +91 98765 43210</li>
+            <li style="margin-bottom: 0.5rem;">💬 WhatsApp Support</li>
+            <li style="margin-bottom: 0.5rem;">📍 Jaipur, Rajasthan</li>
+          </ul>
+        </div>
+      </div>
+      <div
+        style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 1.5rem; text-align: center;">
+        <p>&copy; 2026 ROR STAY. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="js/config.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/share.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/mobile.js"></script>
   <script src="js/contact.js"></script>
   <script src="js/listings.js"></script>
 </body>
