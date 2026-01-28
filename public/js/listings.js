@@ -32,7 +32,31 @@ async function loadListings() {
         }
 
         const data = await response.json();
-        allListings = Array.isArray(data) ? data : [];
+
+        // Normalize data: Map Google Sheets column names to JavaScript properties
+        // Google Sheets uses "BHK", "Furnished Status", "Property Type", "Image URLs"
+        // We need: bhk, furnished, propertyType, imageURLs
+        allListings = (Array.isArray(data) ? data : []).map(listing => ({
+            ...listing,
+            // Map column names to camelCase properties
+            // Convert BHK to string since filter dropdown values are strings
+            bhk: listing.bhk ? String(listing.bhk) : (listing.BHK ? String(listing.BHK) : null),
+            furnished: listing.furnished || listing.Furnished || listing['Furnished Status'] || null,
+            area: listing.area ? String(listing.area) : (listing.Area ? String(listing.Area) : null),
+            propertyType: listing.propertyType || listing['Property Type'] || null,
+            imageURLs: listing.imageURLs || (listing['Image URLs'] ? listing['Image URLs'].split(',').map(url => url.trim()) : []),
+            id: listing.id || listing.ID || null,
+            title: listing.title || listing.Title || null,
+            description: listing.description || listing.Description || null,
+            price: listing.price || listing.Price || null,
+            location: listing.location || listing.Location || null,
+            features: listing.features || listing.Features || null,
+            status: listing.status || listing.Status || null,
+            verified: listing.verified || listing.Verified || false,
+        }));
+
+
+
         filteredListings = [...allListings];
 
         displayListings();
@@ -75,9 +99,11 @@ function displayListings() {
         const description = listing.description || '';
         const images = listing.imageURLs || [];
 
-        const bhk = listing.bhk || extractBHK(description);
+        // Get values from n8n columns (bhk and furnished are separate columns now)
+        const bhk = listing.bhk;
+        const bhkDisplay = bhk ? `${bhk} BHK` : null;
         const area = listing.area || extractArea(description);
-        const furnished = listing.furnished || extractFurnished(description);
+        const furnished = listing.furnished;
         const features = listing.features ? listing.features.split(',').map(f => f.trim()).filter(f => f) : [];
 
         const imagesHTML = images.length > 0 ? `
@@ -110,17 +136,16 @@ function displayListings() {
                 </button>
                 <div class="listing-image">
                     ${imagesHTML}
-                    <div class="listing-price">₹${price}/mo</div>
                     ${propertyType ? `<div class="listing-badges"><span class="listing-tag">${propertyType}</span></div>` : ''}
                 </div>
                 <div class="listing-content">
                     <p style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 0.5rem;">ID: ${listing.id}</p>
                     <h3 class="listing-title">${title}</h3>
+                    <div class="listing-price-inline">₹${price}<span>/month</span></div>
                     <p class="listing-location">📍 ${location}</p>
-                    ${(bhk || area) ? `
+                    ${area ? `
                         <div class="listing-features">
-                            ${bhk ? `<div class="listing-feature-item">🏠 <span>${bhk}</span></div>` : ''}
-                            ${area ? `<div class="listing-feature-item">📐 <span>${area} sq.ft</span></div>` : ''}
+                            <div class="listing-feature-item">📐 <span>${area} sq.ft</span></div>
                         </div>
                     ` : ''}
                     
@@ -208,6 +233,7 @@ function applyFilters() {
     const bhk = document.getElementById('filterBHK')?.value || '';
     const furnished = document.getElementById('filterFurnished')?.value || '';
 
+
     filteredListings = allListings.filter(listing => {
         // Location filter
         if (location && listing.location?.toLowerCase() !== location.toLowerCase()) {
@@ -219,12 +245,12 @@ function applyFilters() {
             return false;
         }
 
-        // BHK filter
+        // BHK filter (bhk value in listing is "1", "2", "3", "4")
         if (bhk && listing.bhk !== bhk) {
             return false;
         }
 
-        // Furnished filter
+        // Furnished filter (furnished value is "Fully Furnished", "Semi Furnished", "Unfurnished")
         if (furnished && listing.furnished !== furnished) {
             return false;
         }
